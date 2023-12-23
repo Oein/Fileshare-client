@@ -120,7 +120,7 @@ class UploadInstance {
                 await axios.post(SERVER_URL + "/upload", {
                   id: uuidV4,
                   chunkIndex,
-                  data: [...data].map((x) => String.fromCharCode(x)).join(""),
+                  data: data.toString("base64"),
                 });
               } catch (e) {
                 await tryUpload();
