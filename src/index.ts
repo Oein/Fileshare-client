@@ -1,6 +1,6 @@
 import EventEmitter from "events";
 import { close, open, read, readdirSync, statSync } from "fs";
-import { join } from "path";
+import { join, sep } from "path";
 import axios from "axios";
 
 const log = true;
@@ -68,7 +68,7 @@ class UploadInstance {
     return new Promise<void>(async (resolve, reject) => {
       const uuidV4 = await this.allocFile(relativePath);
 
-      const filename = relativePath.split("/").pop();
+      const filename = relativePath.split(sep).pop();
       if (log) console.log(threadname, `Uploading ${filename}`);
       const chunkSize = 1024 * 1024 * 32; // 8MB
       let chunkIndex = 0;
